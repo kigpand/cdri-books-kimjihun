@@ -1,6 +1,6 @@
 import React from "react";
 
-type ButtonVariant = "primary";
+type ButtonVariant = "primary" | "lightgray";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
@@ -21,7 +21,7 @@ export default function Button({
     variantClass = "bg-palette-primary text-white hover:bg-blue-600";
   } else {
     variantClass =
-      "bg-palette-gray text-palette-black hover:bg-palette-lightGray";
+      "bg-palette-light-gray text-palette-black hover:bg-palette-gray";
   }
 
   return (
