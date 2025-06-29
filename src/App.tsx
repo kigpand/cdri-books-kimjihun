@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Header from "./layout/Header";
-import ContentLayout from "./layout/ContentLayout";
+import SearchPage from "./pages/SearchPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import BookmarkPage from "./pages/BookmarkPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,7 +16,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Header />
-      <ContentLayout>fdsf</ContentLayout>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SearchPage />} />
+          <Route path="/bookmark" element={<BookmarkPage />} />
+        </Routes>
+      </BrowserRouter>
     </QueryClientProvider>
   );
 }
