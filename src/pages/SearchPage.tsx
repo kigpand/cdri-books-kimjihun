@@ -38,7 +38,9 @@ export default function SearchPage() {
       {(!data || data.meta.total_count === 0) && (
         <EmptyBookList className="mt-[120px]" />
       )}
-      {data && <BookListWrapper documents={data.documents} />}
+      {data && data.meta.total_count > 0 && (
+        <BookListWrapper documents={data.documents} />
+      )}
     </ContentLayout>
   );
 }
