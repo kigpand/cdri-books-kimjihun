@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { BookDocumentType } from "../../api/book";
-import BookList from "../common/BookList";
+import BookList from "./BookList";
 
 type Props = {
   documents: BookDocumentType[];
