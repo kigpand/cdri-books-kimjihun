@@ -5,17 +5,18 @@ import ContentLayout from "../layout/ContentLayout";
 import { useBooks } from "../hooks/api/kakao";
 import BookListWrapper from "../components/common/BookListWrapper";
 import EmptyBookList from "../components/common/EmptyBookList";
+import type { DETAIL_SEARCH_TRAGET } from "../api/book";
 
 export default function SearchPage() {
   const searchList = useSearchList();
+  const [target, setTarget] = useState<DETAIL_SEARCH_TRAGET>("publisher");
   const [keyword, setKeyword] = useState<string>("");
-  const { data } = useBooks(keyword, !!keyword);
+  const { data } = useBooks(keyword, !!keyword, target);
 
   function changeKeyword(value: string) {
     searchList.handleSearch(value);
     setKeyword(value);
   }
-
   console.log(data);
   return (
     <ContentLayout>
