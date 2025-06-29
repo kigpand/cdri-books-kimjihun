@@ -3,6 +3,7 @@ import Header from "./layout/Header";
 import SearchPage from "./pages/SearchPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BookmarkPage from "./pages/BookmarkPage";
+import { Path } from "./constants/path";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,11 +16,11 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
-          <Route path="/" element={<SearchPage />} />
-          <Route path="/bookmark" element={<BookmarkPage />} />
+          <Route path={Path.search} element={<SearchPage />} />
+          <Route path={Path.bookmark} element={<BookmarkPage />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
