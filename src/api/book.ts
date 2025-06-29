@@ -1,10 +1,16 @@
 export type BookDocumentType = {
-  title: string;
-  url: string;
+  authors: string[];
+  contents: string;
   datetime: string;
-  play_time: string;
+  isbn: string;
+  price: number;
+  publisher: string;
+  sale_price: number;
+  status: string;
   thumbnail: string;
-  authors: string;
+  title: string;
+  translators: string[];
+  url: string;
 };
 
 export type BookSearchResponseType = {
