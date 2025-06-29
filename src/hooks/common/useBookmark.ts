@@ -17,14 +17,24 @@ export function useBookmark() {
   const handleToggleBookmarkButton = (bookmark: BookDocumentType) => {
     const exists = bookmarkList.some((item) => item.isbn === bookmark.isbn);
     if (exists) {
-      addBookmark(bookmark);
-    } else {
       removeBookmark(bookmark);
+    } else {
+      addBookmark(bookmark);
     }
+  };
+
+  /**
+   * 입력한 bookmark의 값이 현재 저장되어있는지 이벤트
+   *
+   * @returns 존재 여부. 존재하면 true 없으면 false 반환
+   */
+  const checkExistsBookmark = (bookmark: BookDocumentType) => {
+    return bookmarkList.some((item) => item.isbn === bookmark.isbn);
   };
 
   return {
     bookmarkList,
     handleToggleBookmarkButton,
+    checkExistsBookmark,
   };
 }

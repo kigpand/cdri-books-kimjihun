@@ -1,4 +1,5 @@
 import type { BookDocumentType } from "../../api/book";
+import { useBookmark } from "../../hooks/common/useBookmark";
 import DetailButton from "./DetailButton";
 import LinkButton from "./LinkButton";
 
@@ -51,17 +52,31 @@ function BookListDetail({
   bookInfo: BookDocumentType;
   handleChangeCurrentBook: (book: BookDocumentType) => void;
 }) {
+  const { handleToggleBookmarkButton, checkExistsBookmark } = useBookmark();
+
   return (
     <div className="w-full pt-6 pb-10 pl-[54px] pr-4 flex  border-b border-[#d2d6db]">
-      {bookInfo.thumbnail !== "" ? (
+      <div className="w-[210px] h-[280px] mr-8 relative">
+        {bookInfo.thumbnail !== "" ? (
+          <img
+            className="w-full h-full"
+            src={bookInfo.thumbnail}
+            alt={bookInfo.title}
+          />
+        ) : (
+          <div className="w-full h-full bg-red-400" />
+        )}
         <img
-          className="w-[210px] h-[280px] mr-8"
-          src={bookInfo.thumbnail}
-          alt={bookInfo.title}
+          className="absolute z-10 top-2 right-2"
+          src={
+            checkExistsBookmark(bookInfo)
+              ? "/src/assets/svg/fill.svg"
+              : "/src/assets/svg/line.svg"
+          }
+          alt="bookmark"
+          onClick={() => handleToggleBookmarkButton(bookInfo)}
         />
-      ) : (
-        <div className="w-[210px] h-[280px] mr-8 bg-red-400" />
-      )}
+      </div>
       <div className="pt-5">
         <div className="flex gap-4 items-baseline mb-4">
           <h3 className="text-lg leading-[26px] font-bold text-text-primary">
