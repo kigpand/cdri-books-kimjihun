@@ -49,10 +49,97 @@ function BookListItem({
   );
 }
 
+function BookListDetail({
+  bookInfo,
+  handleChangeCurrentBook,
+}: {
+  bookInfo: BookDocumentType;
+  handleChangeCurrentBook: (book: BookDocumentType) => void;
+}) {
+  return (
+    <div className="w-full pt-6 pb-10 pl-[54px] pr-4 flex  border-b border-[#d2d6db]">
+      {bookInfo.thumbnail !== "" ? (
+        <img
+          className="w-[210px] h-[280px] mr-8"
+          src={bookInfo.thumbnail}
+          alt={bookInfo.title}
+        />
+      ) : (
+        <div className="w-[210px] h-[280px] mr-8 bg-red-400" />
+      )}
+      <div className="pt-5">
+        <div className="flex gap-4 items-baseline mb-4">
+          <h3 className="text-lg leading-[26px] font-bold text-text-primary">
+            {bookInfo.title}
+          </h3>
+          <span className="text-caption text-sm text-text-subtitle">
+            {bookInfo.authors[0]}
+          </span>
+        </div>
+        <div>
+          <label className="font-bold text-sm leading-[26px] text-text-primary">
+            책 소개
+          </label>
+          <p className="text-[10px] text-text-primary w-[360px] whitespace-pre-line">
+            {bookInfo.contents}
+          </p>
+        </div>
+      </div>
+      <div className="grow flex flex-col items-end justify-between pt-[2px]">
+        <DetailButton
+          isExpand
+          handleDetailButton={() => handleChangeCurrentBook(bookInfo)}
+        />
+        <div>
+          <div className="w-full flex flex-col items-end pr-1 mb-7">
+            {bookInfo.sale_price !== -1 && (
+              <span className="flex items-baseline gap-2">
+                <label className="font-medium text-[10px] text-text-subtitle">
+                  원가
+                </label>
+                <div className="text-lg text-text-primary leading-[26px] line-through">
+                  {bookInfo.price.toLocaleString()}원
+                </div>
+              </span>
+            )}
+            <span className="flex items-center gap-2">
+              <label className="font-medium text-[10px] text-text-subtitle">
+                {bookInfo.sale_price !== -1 ? "할인가" : "원가"}
+              </label>
+              <h3 className="font-bold text-lg leading-[26px] text-[#313844]">
+                {bookInfo.sale_price !== -1
+                  ? (
+                      (bookInfo.sale_price / bookInfo.price) *
+                      bookInfo.price
+                    ).toLocaleString()
+                  : bookInfo.price.toLocaleString()}
+                원
+              </h3>
+            </span>
+          </div>
+          <Button
+            className="py-[13px] w-[240px]"
+            onClick={() => console.log("구매")}
+          >
+            구매하기
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function BookList(props: Props) {
   return (
     <li className="w-full">
-      <BookListItem {...props} />
+      {props.bookInfo.isbn === props.currentBook?.isbn ? (
+        <BookListDetail
+          bookInfo={props.bookInfo}
+          handleChangeCurrentBook={props.handleChangeCurrentBook}
+        />
+      ) : (
+        <BookListItem {...props} />
+      )}
     </li>
   );
 }
