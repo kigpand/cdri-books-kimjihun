@@ -5,5 +5,5 @@ type Props = {
 };
 
 export default function ContentLayout({ children }: Props) {
-  return <main className="w-full px-[480px]">{children}</main>;
+  return <main className="w-full px-[480px] py-20">{children}</main>;
 }

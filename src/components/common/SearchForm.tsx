@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 type Props = {
+  width?: string;
   searchList: string[];
   handleSearch: (value: string) => void;
   handleRemoveSearchKeyword: (value: string) => void;
@@ -76,6 +77,7 @@ function SearchRecordForm({
  * 하위 컴포넌트들은 다른 컴포넌트에서 재사용할 일이 없을 것으로 판단해 같은 파일에 내부에 작업 진행
  */
 export default function SearchForm({
+  width,
   searchList,
   handleSearch,
   handleRemoveSearchKeyword,
@@ -91,7 +93,7 @@ export default function SearchForm({
   const historyLength = searchList.length > 0;
 
   return (
-    <div className="flex flex-col gap-4 w-full">
+    <div className={`flex flex-col gap-4 ${width}`}>
       <label className="text-title2 h-9">도서 검색</label>
       <form
         onSubmit={onSubmit}
