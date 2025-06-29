@@ -1,6 +1,6 @@
 import type { BookDocumentType } from "../../api/book";
-import Button from "./Button";
 import DetailButton from "./DetailButton";
+import LinkButton from "./LinkButton";
 
 type Props = {
   bookInfo: BookDocumentType;
@@ -34,12 +34,7 @@ function BookListItem({
         {bookInfo.price.toLocaleString()}원
       </h3>
       <div className="flex gap-2">
-        <Button
-          className="py-[13px] px-5 w-[115px]"
-          onClick={() => console.log("구매")}
-        >
-          구매하기
-        </Button>
+        <LinkButton className="py-[13px] w-[115px] px-5" url={bookInfo.url} />
         <DetailButton
           isExpand={bookInfo.isbn === currentBook?.isbn}
           handleDetailButton={() => handleChangeCurrentBook(bookInfo)}
@@ -117,12 +112,7 @@ function BookListDetail({
               </h3>
             </span>
           </div>
-          <Button
-            className="py-[13px] w-[240px]"
-            onClick={() => console.log("구매")}
-          >
-            구매하기
-          </Button>
+          <LinkButton className="py-[13px] w-[240px]" url={bookInfo.url} />
         </div>
       </div>
     </div>
