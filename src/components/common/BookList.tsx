@@ -4,9 +4,15 @@ import DetailButton from "./DetailButton";
 
 type Props = {
   bookInfo: BookDocumentType;
+  currentBook: BookDocumentType | null;
+  handleChangeCurrentBook: (book: BookDocumentType) => void;
 };
 
-function BookListItem({ bookInfo }: Props) {
+function BookListItem({
+  bookInfo,
+  currentBook,
+  handleChangeCurrentBook,
+}: Props) {
   return (
     <div className="w-full pl-12 pr-[6px] py-4 flex items-center border-b border-[#d2d6db]">
       {bookInfo.thumbnail !== "" ? (
@@ -35,18 +41,18 @@ function BookListItem({ bookInfo }: Props) {
           구매하기
         </Button>
         <DetailButton
-          isExpand={false}
-          handleDetailButton={() => console.log("상세보기")}
+          isExpand={bookInfo.isbn === currentBook?.isbn}
+          handleDetailButton={() => handleChangeCurrentBook(bookInfo)}
         />
       </div>
     </div>
   );
 }
 
-export default function BookList({ bookInfo }: Props) {
+export default function BookList(props: Props) {
   return (
     <li className="w-full">
-      <BookListItem bookInfo={bookInfo} />
+      <BookListItem {...props} />
     </li>
   );
 }
