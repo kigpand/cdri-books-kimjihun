@@ -1,11 +1,34 @@
 import { useState } from "react";
+import DetailSearchButton from "./DetailSearchButton";
+import type { DETAIL_SEARCH_TRAGET } from "../../api/book";
 
-type Props = {
+/**
+ * 현재 파일에서 사용되는 컴포넌트들의 base props
+ */
+type BaseProps = {
   width?: string;
   searchList: string[];
   handleSearch: (value: string) => void;
   handleRemoveSearchKeyword: (value: string) => void;
 };
+
+/**
+ * 검색 기록 컴포넌트 props
+ */
+type RecordProps = {
+  value: string;
+  onChange: (v: string) => void;
+} & BaseProps;
+
+/**
+ * 메인 컴포넌트 props
+ */
+type Props = {
+  handleChangeSearchTarget: (
+    target: DETAIL_SEARCH_TRAGET,
+    keyword: string
+  ) => void;
+} & BaseProps;
 
 /**
  * 검색 입력 필드
@@ -40,10 +63,7 @@ function SearchRecordForm({
   onChange,
   handleSearch,
   handleRemoveSearchKeyword,
-}: {
-  value: string;
-  onChange: (v: string) => void;
-} & Props) {
+}: RecordProps) {
   return (
     <div className="relative pb-5 grow flex flex-col gap-3 bg-palette-light-gray rounded-3xl">
       <div className="flex py-[10px] pl-[10px] gap-[11px] h-[50px]">
@@ -81,6 +101,7 @@ export default function SearchForm({
   searchList,
   handleSearch,
   handleRemoveSearchKeyword,
+  handleChangeSearchTarget,
 }: Props) {
   const [value, setValue] = useState<string>("");
 
@@ -115,12 +136,9 @@ export default function SearchForm({
             <SearchInputField value={value} onChange={setValue} />
           </div>
         )}
-        <button
-          type="submit"
-          className="px-[10px] py-[5px] h-[35px] text-body2 text-text-subtitle border border-text-subtitle rounded-lg cursor-pointer"
-        >
-          상세검색
-        </button>
+        <DetailSearchButton
+          handleChangeSearchTarget={handleChangeSearchTarget}
+        />
       </form>
     </div>
   );

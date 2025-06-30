@@ -30,6 +30,9 @@ module.exports = {
       fontFamily: {
         sans: ['"Noto Sans KR"', "sans-serif"],
       },
+      boxShadow: {
+        modal: "0px 4px 14px 6px rgba(151, 151, 151, 0.15)",
+      },
     },
   },
 };

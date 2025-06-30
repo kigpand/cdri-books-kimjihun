@@ -1,3 +1,6 @@
+/**
+ * 책 정보 type
+ */
 export type BookDocumentType = {
   authors: string[];
   contents: string;
@@ -13,6 +16,9 @@ export type BookDocumentType = {
   url: string;
 };
 
+/**
+ * 책 검색 api response type
+ */
 export type BookSearchResponseType = {
   documents: BookDocumentType[];
   meta: {
@@ -22,6 +28,9 @@ export type BookSearchResponseType = {
   };
 };
 
+/**
+ * 상세 검색 target type
+ */
 export type DETAIL_SEARCH_TRAGET = "person" | "publisher" | null;
 
 /**

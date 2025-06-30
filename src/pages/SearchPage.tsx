@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SearchForm from "../components/common/SearchForm";
+import SearchForm from "../components/search/SearchForm";
 import { useSearchList } from "../hooks/common/useSearchList";
 import ContentLayout from "../layout/ContentLayout";
 import { useBooks } from "../hooks/api/kakao";
@@ -17,7 +17,15 @@ export default function SearchPage() {
     searchList.handleSearch(value);
     setKeyword(value);
   }
-  console.log(data);
+
+  function handleChangeSearchTarget(
+    value: DETAIL_SEARCH_TRAGET,
+    search: string
+  ) {
+    setTarget(value);
+    setKeyword(search);
+  }
+
   return (
     <ContentLayout>
       <SearchForm
@@ -25,6 +33,7 @@ export default function SearchPage() {
         searchList={searchList.searchList}
         handleSearch={changeKeyword}
         handleRemoveSearchKeyword={searchList.handleRemoveSearchKeyword}
+        handleChangeSearchTarget={handleChangeSearchTarget}
       />
       <p className="mt-[24.1px] mb-9 flex gap-4 text-text-primary font-medium">
         <span>도서 검색 결과</span>
