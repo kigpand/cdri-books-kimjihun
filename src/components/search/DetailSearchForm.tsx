@@ -53,15 +53,13 @@ export default function DetailSearchForm({
           value={keyword}
           placeholder="검색어를 입력하세요"
           onChange={(e) => setKeyword(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              handleSearchButton();
-            }
-          }}
         />
       </div>
-      <Button className="w-full py-[5px]" onClick={handleSearchButton}>
+      <Button
+        type="button"
+        className="w-full py-[5px]"
+        onClick={handleSearchButton}
+      >
         검색하기
       </Button>
       <img
