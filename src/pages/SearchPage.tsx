@@ -19,6 +19,7 @@ export default function SearchPage() {
       setTarget(null);
     }
     setKeyword(value);
+    searchList.handleSearch(value);
   }
 
   function handleChangeSearchTarget(
