@@ -9,12 +9,15 @@ import type { DETAIL_SEARCH_TRAGET } from "../api/book";
 
 export default function SearchPage() {
   const searchList = useSearchList();
-  const [target, setTarget] = useState<DETAIL_SEARCH_TRAGET>("publisher");
+  const [target, setTarget] = useState<DETAIL_SEARCH_TRAGET>(null);
   const [keyword, setKeyword] = useState<string>("");
   const { data } = useBooks(keyword, !!keyword, target);
 
-  function changeKeyword(value: string) {
-    searchList.handleSearch(value);
+  function handleSearch(value: string) {
+    // 상세 검색 후 일반 검색시 target 필터링 제거 위한 코드
+    if (target !== null) {
+      setTarget(null);
+    }
     setKeyword(value);
   }
 
@@ -31,7 +34,7 @@ export default function SearchPage() {
       <SearchForm
         width="w-[568px]"
         searchList={searchList.searchList}
-        handleSearch={changeKeyword}
+        handleSearch={handleSearch}
         handleRemoveSearchKeyword={searchList.handleRemoveSearchKeyword}
         handleChangeSearchTarget={handleChangeSearchTarget}
       />
