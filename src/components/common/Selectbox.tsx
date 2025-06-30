@@ -31,6 +31,7 @@ export default function SelectBox({
   return (
     <div className={`relative ${className ?? ""}`}>
       <button
+        type="button"
         onClick={() => setOpen((prev) => !prev)}
         className="w-full border-b border-palette-primary rounded px-2 py-2 flex items-center justify-between outline-none text-sm font-bold text-[#353c49] hover:border-gray-400"
       >

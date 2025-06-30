@@ -17,6 +17,7 @@ export default function DetailSearchButton({
   return (
     <div className="relative flex justify-center">
       <button
+        type="button"
         onClick={() => setIsOpen(!open)}
         className="px-[10px] py-[5px] h-[35px] text-body2 text-text-subtitle border border-text-subtitle rounded-lg cursor-pointer"
       >
