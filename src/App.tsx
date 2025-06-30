@@ -4,6 +4,7 @@ import SearchPage from "./pages/SearchPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BookmarkPage from "./pages/BookmarkPage";
 import { Path } from "./constants/path";
+import LoadingLayout from "./layout/LoadingLayout";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,6 +17,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <LoadingLayout />
       <BrowserRouter>
         <Header />
         <Routes>
