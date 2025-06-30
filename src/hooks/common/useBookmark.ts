@@ -18,8 +18,10 @@ export function useBookmark() {
     const exists = bookmarkList.some((item) => item.isbn === bookmark.isbn);
     if (exists) {
       removeBookmark(bookmark);
+      alert(`${bookmark.title}이(가) 찜목록에서 제거되었습니다`);
     } else {
       addBookmark(bookmark);
+      alert(`${bookmark.title}이(가) 찜목록에 등록되었습니다`);
     }
   };
 
