@@ -1,10 +1,17 @@
+import { useState } from "react";
 import BookListWrapper from "../components/common/BookListWrapper";
 import EmptyBookList from "../components/common/EmptyBookList";
+import Pagination from "../components/common/Pagination";
 import { useBookmark } from "../hooks/common/useBookmark";
 import ContentLayout from "../layout/ContentLayout";
 
 export default function BookmarkPage() {
   const { bookmarkList } = useBookmark();
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const currentBookmarkList = bookmarkList.slice(
+    currentPage * 10,
+    (currentPage + 1) * 10
+  );
 
   return (
     <ContentLayout>
@@ -22,7 +29,15 @@ export default function BookmarkPage() {
         </span>
       </p>
       {bookmarkList.length === 0 && <EmptyBookList className="mt-[120px]" />}
-      {bookmarkList.length > 0 && <BookListWrapper documents={bookmarkList} />}
+      {bookmarkList.length > 0 && (
+        <BookListWrapper documents={currentBookmarkList} />
+      )}
+      {bookmarkList.length > 0 && (
+        <Pagination
+          pageCount={Math.ceil(bookmarkList.length / 10)}
+          onPageChange={({ selected }) => setCurrentPage(selected)}
+        />
+      )}
     </ContentLayout>
   );
 }
