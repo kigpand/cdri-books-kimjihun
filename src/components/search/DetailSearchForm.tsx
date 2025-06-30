@@ -9,6 +9,7 @@ const options: { label: string; value: string }[] = [
 ];
 
 type Props = {
+  resetKeyword: () => void;
   handleChangeSearchTarget: (
     target: DETAIL_SEARCH_TRAGET,
     keyword: string
@@ -17,6 +18,7 @@ type Props = {
 };
 
 export default function DetailSearchForm({
+  resetKeyword,
   handleChangeSearchTarget,
   handleCloseForm,
 }: Props) {
@@ -33,6 +35,11 @@ export default function DetailSearchForm({
       keyword
     );
     setKeyword("");
+  }
+
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setKeyword(e.target.value);
+    resetKeyword();
   }
 
   return (
@@ -52,7 +59,7 @@ export default function DetailSearchForm({
           className="grow h-9 border-b border-palette-primary outline-none text-caption text-[#8d94a0]"
           value={keyword}
           placeholder="검색어를 입력하세요"
-          onChange={(e) => setKeyword(e.target.value)}
+          onChange={handleInputChange}
         />
       </div>
       <Button

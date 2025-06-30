@@ -137,6 +137,8 @@ export default function SearchForm({
           </div>
         )}
         <DetailSearchButton
+          keyword={value}
+          resetKeyword={() => setValue("")}
           handleChangeSearchTarget={handleChangeSearchTarget}
         />
       </form>
