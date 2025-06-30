@@ -4,6 +4,9 @@ import { useBookmarkStore } from "../../store/bookmarkStore";
 /**
  * 찜목록을 다루는 커스텀 훅
  * - zustand + localstorage로 찜목록 관리
+ * - bookmarkList: 찜목록 리스트
+ * - handleToggleBookmarkButton: 찜목록 책 on/off 이벤트
+ * - checkExistsBookmark: 찜목록에 책 존재하는지 체크하는 이벤트. 존재시 true, 없을시 false 반환
  */
 export function useBookmark() {
   const bookmarkList = useBookmarkStore((state) => state.bookmark);

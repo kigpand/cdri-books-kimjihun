@@ -17,6 +17,12 @@ type Props = {
   handleCloseForm: () => void;
 };
 
+/**
+ *
+ * @param resetKeyword 현재 메인 검색어 초기화 이벤트
+ * @param handleChangeSearchTarget 상세 검색 이벤트
+ * @param handleCloseForm 상세 검색 폼 닫기 이벤트
+ */
 export default function DetailSearchForm({
   resetKeyword,
   handleChangeSearchTarget,

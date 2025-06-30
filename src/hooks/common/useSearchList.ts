@@ -4,6 +4,9 @@ import { useSearchStore } from "../../store/searchStore";
  * 검색어 리스트를 다루는 커스텀 훅
  * - zustand + localstorage로 검색어 리스트 관리
  * - 최대 8개까지 저장
+ * - searchList: 검색어 목록
+ * - handleSearch: 검색어 등록 메소드
+ * - handleRemoveSearchKeyword: 검색어 제거 메소드
  */
 export function useSearchList() {
   const searchList = useSearchStore((state) => state.searchList);

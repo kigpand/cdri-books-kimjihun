@@ -1,13 +1,13 @@
 import { useState } from "react";
 import DetailSearchButton from "./DetailSearchButton";
 import type { DETAIL_SEARCH_TRAGET } from "../../api/book";
+import { useSearchList } from "../../hooks/common/useSearchList";
 
 /**
  * 현재 파일에서 사용되는 컴포넌트들의 base props
  */
 type BaseProps = {
   width?: string;
-  searchList: string[];
   handleSearch: (value: string) => void;
   handleRemoveSearchKeyword: (value: string) => void;
 };
@@ -32,6 +32,9 @@ type Props = {
 
 /**
  * 검색 입력 필드
+ *
+ * @param value 현재 검색 input value
+ * @param onChange 검색어 change event
  */
 function SearchInputField({
   value,
@@ -56,14 +59,20 @@ function SearchInputField({
 
 /**
  * 검색 기록이 있을 경우 보여지는 폼
+ *
+ * @param value 현재 입력받는 input(검색어) value
+ * @param onChange 검색어 수정 이벤트
+ * @param handleSearch 검색 이벤트 - 검색어 리스트 클릭용
+ * @param handleRemoveSearchKeyword 검색어 삭제 이벤트 - 검색어 close button 클릭 이벤트
  */
 function SearchRecordForm({
-  searchList,
   value,
   onChange,
   handleSearch,
   handleRemoveSearchKeyword,
 }: RecordProps) {
+  const { searchList } = useSearchList();
+
   return (
     <div className="relative pb-5 grow flex flex-col gap-3 bg-palette-light-gray rounded-3xl">
       <div className="flex py-[10px] pl-[10px] gap-[11px] h-[50px]">
@@ -95,14 +104,18 @@ function SearchRecordForm({
 /**
  * 메인 검색 폼 컴포넌트
  * 하위 컴포넌트들은 다른 컴포넌트에서 재사용할 일이 없을 것으로 판단해 같은 파일에 내부에 작업 진행
+ * @param width Form 넓이(재사용성 위해 width 추가)
+ * @param handleSearch 검색 이벤트
+ * @param handleRemoveSearchKeyword 검색어 리스트에서 입력한 검색어 삭제 이벤트
+ * @param handleChangeSearchTarget 상세 검색 이벤트
  */
 export default function SearchForm({
   width,
-  searchList,
   handleSearch,
   handleRemoveSearchKeyword,
   handleChangeSearchTarget,
 }: Props) {
+  const { searchList } = useSearchList();
   const [value, setValue] = useState<string>("");
 
   function onSubmit(event: React.FormEvent) {
@@ -125,7 +138,6 @@ export default function SearchForm({
         {/* 검색기록 있을시 SearchRecordForm(검색기록 폼), 없을시 SearchInputField 렌더링 */}
         {historyLength ? (
           <SearchRecordForm
-            searchList={searchList}
             value={value}
             onChange={setValue}
             handleSearch={handleSearch}

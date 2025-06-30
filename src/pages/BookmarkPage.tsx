@@ -5,9 +5,15 @@ import Pagination from "../components/common/Pagination";
 import { useBookmark } from "../hooks/common/useBookmark";
 import ContentLayout from "../layout/ContentLayout";
 
+/**
+ * 찜목록 페이지
+ */
 export default function BookmarkPage() {
+  // 찜목록 책 리스트
   const { bookmarkList } = useBookmark();
+  // 현재 페이지 state
   const [currentPage, setCurrentPage] = useState<number>(0);
+  // 현재 페이지에 속한 찜목록 책 리스트
   const currentBookmarkList = bookmarkList.slice(
     currentPage * 10,
     (currentPage + 1) * 10

@@ -6,6 +6,12 @@ type TabProps = {
   isCurrentPath: boolean;
   handleTabClick: () => void;
 };
+
+/**
+ *
+ * @param title 탭 타이틀
+ * @param isCurrentPath 현재 페이지 path 정보
+ */
 function HeaderTab({ title, isCurrentPath, handleTabClick }: TabProps) {
   return (
     <div
@@ -19,6 +25,9 @@ function HeaderTab({ title, isCurrentPath, handleTabClick }: TabProps) {
   );
 }
 
+/**
+ * 페이지 헤더
+ */
 export default function Header() {
   const location = useLocation();
   const nav = useNavigate();

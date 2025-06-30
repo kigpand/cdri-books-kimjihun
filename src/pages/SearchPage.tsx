@@ -8,13 +8,25 @@ import EmptyBookList from "../components/common/EmptyBookList";
 import type { DETAIL_SEARCH_TRAGET } from "../api/book";
 import Pagination from "../components/common/Pagination";
 
+/**
+ * 검색(홈) 페이지
+ */
 export default function SearchPage() {
   const searchList = useSearchList();
+  // 상세 검색 target(person, publisher) state
   const [target, setTarget] = useState<DETAIL_SEARCH_TRAGET>(null);
+  // 메인 검색어 state
   const [keyword, setKeyword] = useState<string>("");
+  // 현재 페이지 state
   const [currentPage, setCurrentPage] = useState<number>(0);
+  // 현재 책 리스트
   const { data } = useBooks(keyword, !!keyword, currentPage + 1, target);
 
+  /**
+   * 메인 검색 이벤트
+   *
+   * @param value 검색 결과
+   */
   function handleSearch(value: string) {
     // 상세 검색 후 일반 검색시 target 필터링 제거 위한 코드
     if (target !== null) {
@@ -24,6 +36,12 @@ export default function SearchPage() {
     searchList.handleSearch(value);
   }
 
+  /**
+   * 상세검색 이벤트
+   *
+   * @param value 상세 검색 target value
+   * @param search 상세 검색 input value
+   */
   function handleChangeSearchTarget(
     value: DETAIL_SEARCH_TRAGET,
     search: string
@@ -36,7 +54,6 @@ export default function SearchPage() {
     <ContentLayout>
       <SearchForm
         width="w-[568px]"
-        searchList={searchList.searchList}
         handleSearch={handleSearch}
         handleRemoveSearchKeyword={searchList.handleRemoveSearchKeyword}
         handleChangeSearchTarget={handleChangeSearchTarget}

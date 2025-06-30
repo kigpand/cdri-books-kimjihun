@@ -9,6 +9,12 @@ type Props = {
   handleChangeCurrentBook: (book: BookDocumentType) => void;
 };
 
+/**
+ * 책 리스트 아이템 컴포넌트
+ * @param bookInfo 책 정보
+ * @param currentBook 현재 펼쳐진(상세 정보 보여진) 책 정보
+ * @param handleChangeCurrentBook 현재 책을 상세정보 보여지는 책으로 변경하는 이벤트
+ */
 function BookListItem({
   bookInfo,
   currentBook,
@@ -45,6 +51,11 @@ function BookListItem({
   );
 }
 
+/**
+ * 책 상세정보 안내 컴포넌트
+ * @param bookInfo 책 정보
+ * @param handleChangeCurrentBook 현재 책을 상세정보 보여지는 책으로 변경하는 이벤트
+ */
 function BookListDetail({
   bookInfo,
   handleChangeCurrentBook,
@@ -134,6 +145,12 @@ function BookListDetail({
   );
 }
 
+/**
+ * 책 리스트 UI wrapper. 평상시 list만 표출하고 상세 정보 클릭시 Detail ui 표시
+ * @param bookInfo 책 정보
+ * @param currentBook 현재 펼쳐진(상세 정보 보여진) 책 정보
+ * @param handleChangeCurrentBook 현재 책을 상세정보 보여지는 책으로 변경하는 이벤트
+ */
 export default function BookList(props: Props) {
   return (
     <li className="w-full">

@@ -11,6 +11,12 @@ type Props = {
   ) => void;
 };
 
+/**
+ *
+ * @param keyword 기존 검색 input의 value값
+ * @param resetKeyword 현재 메인 검색어 초기화 이벤트
+ * @param handleChangeSearchTarget 상세 검색 이벤트
+ */
 export default function DetailSearchButton({
   keyword,
   resetKeyword,

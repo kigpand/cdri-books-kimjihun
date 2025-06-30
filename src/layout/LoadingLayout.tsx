@@ -1,5 +1,8 @@
 import { useIsFetching } from "@tanstack/react-query";
 
+/**
+ * loading 안내 레이아웃
+ */
 export default function LoadingLayout() {
   const isFetching = useIsFetching();
 

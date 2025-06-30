@@ -9,6 +9,12 @@ type Props = {
   onPageChange: (selectedItem: SelectedItemType) => void;
 };
 
+/**
+ * 책 리스트 관리위한 페이지네이션 컴포넌트
+ *
+ * @param pageCount 총 페이지의 갯수
+ * @param onPageChange 변경된 페이지 감지 이벤트
+ */
 export default function Pagination({ pageCount, onPageChange }: Props) {
   return (
     <ReactPaginate

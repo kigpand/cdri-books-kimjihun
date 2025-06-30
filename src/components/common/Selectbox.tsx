@@ -19,6 +19,10 @@ type Props = {
 
 /**
  * 공용 selectbox 컴포넌트
+ * @param className selectbox ui custom classname
+ * @param values Array<{label: selectbox 표시값, value: selectItem value }>
+ * @param currentItem 현재 선택된 selectbox item
+ * @param handleChangeSelect selectbox 변경 이벤트
  */
 export default function SelectBox({
   className,

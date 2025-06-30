@@ -5,6 +5,11 @@ type Props = {
   handleDetailButton: () => void;
 };
 
+/**
+ * 상세보기 버튼 컴포넌트
+ * @param isExpand 현재 버튼이 속해있는 리스트 상세 on/off 여부.
+ * @param handleDetailButton 버튼 detail 변경 이벤트
+ */
 export default function DetailButton({ isExpand, handleDetailButton }: Props) {
   return (
     <Button

@@ -2,6 +2,11 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { BookDocumentType } from "../api/book";
 
+/**
+ * bookmark -  찜목록에 저장된 책 리스트 배열
+ * addBookmark - 찜목록에 책 추가
+ * removeBookmark - 찜목록에서 책 제거
+ */
 type BookmarkStore = {
   bookmark: BookDocumentType[];
   addBookmark: (bookmark: BookDocumentType) => void;

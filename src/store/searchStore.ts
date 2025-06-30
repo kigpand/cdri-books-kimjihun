@@ -1,6 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+/**
+ * searchList: 최근 검색어 목록
+ * addSearchList: 검색어 등록
+ * removeSearchList: 검색어 제거
+ */
 type SearchStore = {
   searchList: string[];
   addSearchList: (keyword: string) => void;
