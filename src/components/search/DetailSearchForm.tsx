@@ -13,9 +13,13 @@ type Props = {
     target: DETAIL_SEARCH_TRAGET,
     keyword: string
   ) => void;
+  handleCloseForm: () => void;
 };
 
-export default function DetailSearchForm({ handleChangeSearchTarget }: Props) {
+export default function DetailSearchForm({
+  handleChangeSearchTarget,
+  handleCloseForm,
+}: Props) {
   const [selectValue, setSelectValue] = useState<{
     label: string;
     value: string;
@@ -60,6 +64,12 @@ export default function DetailSearchForm({ handleChangeSearchTarget }: Props) {
       <Button className="w-full py-[5px]" onClick={handleSearchButton}>
         검색하기
       </Button>
+      <img
+        src="/src/assets/svg/close.svg"
+        alt="닫기버튼"
+        className="absolute top-2 right-2"
+        onClick={handleCloseForm}
+      />
     </div>
   );
 }

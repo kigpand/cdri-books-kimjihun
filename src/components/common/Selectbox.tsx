@@ -40,7 +40,7 @@ export default function SelectBox({
       </button>
 
       {open && (
-        <ul className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded shadow-lg">
+        <ul className="absolute z-10 mt-1 w-full bg-white border border-gray-200 shadow-select-itembox">
           {values.map((item) => (
             <li
               key={String(item.value)}
@@ -48,7 +48,7 @@ export default function SelectBox({
                 handleChangeSelect(item);
                 setOpen(false);
               }}
-              className={`px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer ${
+              className={`px-2 py-1 text-caption h-[30px] text-sm text-[#8d94a0] hover:bg-gray-100 cursor-pointer ${
                 item.value === currentItem.value
                   ? "bg-gray-100 font-medium"
                   : ""

@@ -17,7 +17,7 @@ export default function DetailSearchButton({
   return (
     <div className="relative flex justify-center">
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpen(!open)}
         className="px-[10px] py-[5px] h-[35px] text-body2 text-text-subtitle border border-text-subtitle rounded-lg cursor-pointer"
       >
         상세검색
@@ -28,6 +28,7 @@ export default function DetailSearchButton({
             setIsOpen(false);
             handleChangeSearchTarget(target, keyword);
           }}
+          handleCloseForm={() => setIsOpen(false)}
         />
       )}
     </div>
