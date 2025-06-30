@@ -14,11 +14,12 @@ import { getBooks, type DETAIL_SEARCH_TRAGET } from "../../api/book";
 export const useBooks = (
   query: string,
   enabled = true,
+  page: number,
   target?: DETAIL_SEARCH_TRAGET
 ) => {
   return useQuery({
-    queryKey: ["searchBooks", query, target],
-    queryFn: () => getBooks(query, target),
+    queryKey: ["searchBooks", query, target, page],
+    queryFn: () => getBooks(query, target, page),
     enabled: !!query && enabled,
     staleTime: 1000 * 60 * 5,
   });

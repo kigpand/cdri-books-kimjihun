@@ -6,12 +6,14 @@ import { useBooks } from "../hooks/api/kakao";
 import BookListWrapper from "../components/common/BookListWrapper";
 import EmptyBookList from "../components/common/EmptyBookList";
 import type { DETAIL_SEARCH_TRAGET } from "../api/book";
+import Pagination from "../components/common/Pagination";
 
 export default function SearchPage() {
   const searchList = useSearchList();
   const [target, setTarget] = useState<DETAIL_SEARCH_TRAGET>(null);
   const [keyword, setKeyword] = useState<string>("");
-  const { data } = useBooks(keyword, !!keyword, target);
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const { data } = useBooks(keyword, !!keyword, currentPage + 1, target);
 
   function handleSearch(value: string) {
     // 상세 검색 후 일반 검색시 target 필터링 제거 위한 코드
@@ -54,6 +56,12 @@ export default function SearchPage() {
       )}
       {data && data.meta.total_count > 0 && (
         <BookListWrapper documents={data.documents} />
+      )}
+      {data && (
+        <Pagination
+          pageCount={Math.ceil(data.meta.total_count / 10)}
+          onPageChange={({ selected }) => setCurrentPage(selected)}
+        />
       )}
     </ContentLayout>
   );

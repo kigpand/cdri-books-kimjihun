@@ -43,15 +43,17 @@ export type DETAIL_SEARCH_TRAGET = "person" | "publisher" | null;
  */
 export const getBooks = async (
   query: string,
-  target?: DETAIL_SEARCH_TRAGET
+  target?: DETAIL_SEARCH_TRAGET,
+  page: number = 1
 ): Promise<BookSearchResponseType> => {
   const encodedQuery = encodeURIComponent(query);
   // target이 있을 경우에만 포함하기 위한 파라미터
   const targetParam = target ? `&target=${target}` : "";
+  const pageParam = `&page=${page}`;
 
   const url = `${
     import.meta.env.VITE_KAKAO_API_URL
-  }?query=${encodedQuery}&size=10${targetParam}`;
+  }?query=${encodedQuery}&size=10${targetParam}${pageParam}`;
 
   const res = await fetch(url, {
     headers: {
