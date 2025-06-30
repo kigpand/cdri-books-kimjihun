@@ -49,6 +49,12 @@ export default function DetailSearchForm({ handleChangeSearchTarget }: Props) {
           value={keyword}
           placeholder="검색어를 입력하세요"
           onChange={(e) => setKeyword(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleSearchButton();
+            }
+          }}
         />
       </div>
       <Button className="w-full py-[5px]" onClick={handleSearchButton}>
