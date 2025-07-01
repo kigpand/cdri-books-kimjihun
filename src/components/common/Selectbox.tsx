@@ -30,6 +30,7 @@ export default function SelectBox({
   currentItem,
   handleChangeSelect,
 }: Props) {
+  /** select item on/off state */
   const [open, setOpen] = useState(false);
 
   return (

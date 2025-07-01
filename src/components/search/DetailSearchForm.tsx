@@ -28,10 +28,12 @@ export default function DetailSearchForm({
   handleChangeSearchTarget,
   handleCloseForm,
 }: Props) {
+  /** 상세 검색 target selectbox current value */
   const [selectValue, setSelectValue] = useState<{
     label: string;
     value: string;
   }>(options[0]);
+  /** 상세 검색 검색어 input state */
   const [keyword, setKeyword] = useState<string>("");
 
   function handleSearchButton() {
@@ -45,6 +47,7 @@ export default function DetailSearchForm({
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setKeyword(e.target.value);
+    // 상세 검색어 등록시 메인 검색어 초기화 진행
     resetKeyword();
   }
 

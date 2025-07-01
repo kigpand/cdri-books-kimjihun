@@ -12,10 +12,10 @@ import Pagination from "../components/common/Pagination";
  * 검색(홈) 페이지
  */
 export default function SearchPage() {
-  const searchList = useSearchList();
+  const { handleSearch, handleRemoveSearchKeyword } = useSearchList();
   // 상세 검색 target(person, publisher) state
   const [target, setTarget] = useState<DETAIL_SEARCH_TRAGET>(null);
-  // 메인 검색어 state
+  // 검색어 등록 state
   const [keyword, setKeyword] = useState<string>("");
   // 현재 페이지 state
   const [currentPage, setCurrentPage] = useState<number>(0);
@@ -27,13 +27,13 @@ export default function SearchPage() {
    *
    * @param value 검색 결과
    */
-  function handleSearch(value: string) {
+  function handleSearchButton(value: string) {
     // 상세 검색 후 일반 검색시 target 필터링 제거 위한 코드
     if (target !== null) {
       setTarget(null);
     }
     setKeyword(value);
-    searchList.handleSearch(value);
+    handleSearch(value);
   }
 
   /**
@@ -54,8 +54,8 @@ export default function SearchPage() {
     <ContentLayout>
       <SearchForm
         width="w-[568px]"
-        handleSearch={handleSearch}
-        handleRemoveSearchKeyword={searchList.handleRemoveSearchKeyword}
+        handleSearchButton={handleSearchButton}
+        handleRemoveSearchKeyword={handleRemoveSearchKeyword}
         handleChangeSearchTarget={handleChangeSearchTarget}
       />
       <p className="mt-[24.1px] mb-9 flex gap-4 text-text-primary font-medium">

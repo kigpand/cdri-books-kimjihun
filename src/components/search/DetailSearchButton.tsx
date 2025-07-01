@@ -22,6 +22,7 @@ export default function DetailSearchButton({
   resetKeyword,
   handleChangeSearchTarget,
 }: Props) {
+  // 상세 검색 폼 on/off state
   const [open, setIsOpen] = useState<boolean>(false);
 
   // open일때 keyword가 존재할 수 있으므로 open은 의존성배열에서 감지하면 안됨.

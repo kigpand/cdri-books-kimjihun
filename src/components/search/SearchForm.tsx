@@ -8,7 +8,7 @@ import { useSearchList } from "../../hooks/common/useSearchList";
  */
 type BaseProps = {
   width?: string;
-  handleSearch: (value: string) => void;
+  handleSearchButton: (value: string) => void;
   handleRemoveSearchKeyword: (value: string) => void;
 };
 
@@ -68,7 +68,7 @@ function SearchInputField({
 function SearchRecordForm({
   value,
   onChange,
-  handleSearch,
+  handleSearchButton,
   handleRemoveSearchKeyword,
 }: RecordProps) {
   const { searchList } = useSearchList();
@@ -83,7 +83,7 @@ function SearchRecordForm({
           <li className="flex justify-between pl-[51px] pr-6" key={item}>
             <button
               type="button"
-              onClick={() => handleSearch(item)}
+              onClick={() => handleSearchButton(item)}
               className="text-caption text-text-subtitle text-left cursor-pointer hover:underline"
             >
               {item}
@@ -105,25 +105,27 @@ function SearchRecordForm({
  * 메인 검색 폼 컴포넌트
  * 하위 컴포넌트들은 다른 컴포넌트에서 재사용할 일이 없을 것으로 판단해 같은 파일에 내부에 작업 진행
  * @param width Form 넓이(재사용성 위해 width 추가)
- * @param handleSearch 검색 이벤트
+ * @param handleSearchButton 검색 이벤트
  * @param handleRemoveSearchKeyword 검색어 리스트에서 입력한 검색어 삭제 이벤트
  * @param handleChangeSearchTarget 상세 검색 이벤트
  */
 export default function SearchForm({
   width,
-  handleSearch,
+  handleSearchButton,
   handleRemoveSearchKeyword,
   handleChangeSearchTarget,
 }: Props) {
   const { searchList } = useSearchList();
+  // 검색어 입력 input state
   const [value, setValue] = useState<string>("");
 
   function onSubmit(event: React.FormEvent) {
     event.preventDefault();
     setValue("");
-    handleSearch(value);
+    handleSearchButton(value);
   }
 
+  /** 검색 기록 갯수 */
   const historyLength = searchList.length > 0;
 
   return (
@@ -140,7 +142,7 @@ export default function SearchForm({
           <SearchRecordForm
             value={value}
             onChange={setValue}
-            handleSearch={handleSearch}
+            handleSearchButton={handleSearchButton}
             handleRemoveSearchKeyword={handleRemoveSearchKeyword}
           />
         ) : (
